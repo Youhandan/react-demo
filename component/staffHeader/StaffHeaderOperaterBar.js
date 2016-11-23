@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import { Form, Input, Dropdown } from 'semantic-ui-react'
-import { peopleSelectOptions, sortMethodOptions } from './StaffHeaderConstants'
+import { staffSelectOptions, sortMethodOptions } from './StaffHeaderConstants'
 
 class StaffHeaderOperateBar extends React.Component {
     render() {
@@ -16,9 +16,9 @@ class StaffHeaderOperateBar extends React.Component {
                     <Form.Field>
                         <label>人员筛选</label>
                         <Dropdown
-                            defaultValue={peopleSelectOptions[0].value}
+                            defaultValue={staffSelectOptions[0].value}
                             selection
-                            options={peopleSelectOptions}
+                            options={staffSelectOptions}
                         />
                     </Form.Field>
                     <Form.Field>

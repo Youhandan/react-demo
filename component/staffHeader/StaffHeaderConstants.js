@@ -1,7 +1,7 @@
 /**
  * Created by youhandan on 2016/11/23.
  */
-export const peopleSelectOptions = [
+export const staffSelectOptions = [
     { text: '全部', value: 'whole' },
     { text: '主任', value: 'master' },
     { text: '学生', value: 'student' },

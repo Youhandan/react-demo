@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import StaffHeaderOperateBar from './StaffHeaderOperaterBar'
-import {Container, Header, Segment} from 'semantic-ui-react'
+import { Container, Header, Segment } from 'semantic-ui-react'
 
 class StaffHeaderContainer extends React.Component {
     render() {

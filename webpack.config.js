@@ -11,6 +11,8 @@ var config = {
         port: 7777
     },
 
+    devtool: 'cheap-module-source-map',
+
     module: {
         loaders: [ {
             test: /\.jsx?$/,

@@ -1,7 +1,8 @@
 import React from 'react'
-import StaffHeaderContainer from './component/staffHeader/StaffHeaderContainer'
 import { Container } from 'semantic-ui-react'
+import StaffHeaderContainer from './component/staffHeader/StaffHeaderContainer'
 import StaffItemPanel from './component/staffItemPanel/StaffItemPanel'
+import StaffAddition from './component/staffAddition/StaffAddition'
 
 class App extends React.Component {
     render() {
@@ -9,6 +10,7 @@ class App extends React.Component {
             <Container >
                 <StaffHeaderContainer />
                 <StaffItemPanel />
+                <StaffAddition />
             </Container >
 
         )

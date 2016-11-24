@@ -1,3 +1,5 @@
+var path = require('path')
+
 var config = {
     entry: './main.js',
 
@@ -9,6 +11,12 @@ var config = {
     devServer: {
         inline: true,
         port: 7777
+    },
+
+    resolve: {
+        root: [
+            path.resolve('/Users/youhandan/Desktop/react-demo')
+        ]
     },
 
     devtool: 'cheap-module-source-map',

@@ -3,7 +3,7 @@
  */
 import React, { PropTypes } from 'react'
 import { Button, Modal, Dropdown, Input, Form, TextArea} from 'semantic-ui-react'
-import { sexOptions, roleOptions } from '/Users/youhandan/Desktop/react-demo/component/staffAddition/staffAdditionConstants'
+import { sexOptions, roleOptions } from 'component/staffAddition/staffAdditionConstants'
 
 class StaffDetail extends React.Component {
 

@@ -3,21 +3,21 @@
  */
 import React from 'react'
 import StaffHeaderOperateBar from './StaffHeaderOperateBar'
-import { Container, Header, Segment } from 'semantic-ui-react'
+import { Header, Segment } from 'semantic-ui-react'
 
-class StaffHeaderContainer extends React.Component {
+class StaffHeader extends React.Component {
     render() {
         return (
-            <Container textAlign='center'>
-                <Segment attached inverted color='blue'>
+            <div>
+                <Segment attached inverted color='blue' textAlign='center'>
                     <Header as='h1'>人员管理系统</Header>
                 </Segment>
-                <Segment attached>
+                <Segment attached textAlign='center'>
                     <StaffHeaderOperateBar/>
                 </Segment>
-            </Container>
+            </div>
         )
     }
 }
 
-export default StaffHeaderContainer
+export default StaffHeader

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from 'semantic-ui-react'
-import StaffHeaderContainer from './component/staffHeader/StaffHeaderContainer'
+import StaffHeaderContainer from './component/staffHeader/StaffHeader'
 import StaffItemPanel from './component/staffItemPanel/StaffItemPanel'
 import StaffAddition from './component/staffAddition/StaffAddition'
 

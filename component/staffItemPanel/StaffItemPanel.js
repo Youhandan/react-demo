@@ -6,7 +6,22 @@ import { Table } from 'semantic-ui-react'
 import StaffItem from './StaffItem'
 
 class StaffItemPanel extends React.Component {
+    constructor(props) {
+        super(props)
+    }
     render() {
+        let items = []
+        if(this.props.items.length == 0) {
+            items.push(
+                <Table.Row textAlign='center'>
+                    <Table.Cell>暂无用户</Table.Cell>
+                </Table.Row>
+                );
+        }else {
+            this.props.items.forEach( (item, index) => {
+                items.push(<StaffItem key={index} item={item}/>);
+            });
+        }
         return (
             <Table striped attached>
                 <Table.Header>
@@ -20,7 +35,7 @@ class StaffItemPanel extends React.Component {
                 </Table.Header>
 
                 <Table.Body>
-                    <StaffItem/>
+                    { items }
                 </Table.Body>
             </Table>
         )

@@ -34,10 +34,10 @@ class StaffItem extends React.Component {
     render() {
         return (
             <Table.Row textAlign='center'>
-                <Table.Cell>张三</Table.Cell>
-                <Table.Cell>20</Table.Cell>
-                <Table.Cell>主任</Table.Cell>
-                <Table.Cell>男</Table.Cell>
+                <Table.Cell>{ this.props.item.name }</Table.Cell>
+                <Table.Cell>{ this.props.item.age }</Table.Cell>
+                <Table.Cell>{ this.props.item.role }</Table.Cell>
+                <Table.Cell>{ this.props.item.sex }</Table.Cell>
                 <Table.Cell>
                     <a style={{margin: 10, cursor: 'pointer'}}>删除</a>
                     <a style={{margin: 10, cursor: 'pointer'}} onClick={this.handleShowStaffDetail}>详情</a>

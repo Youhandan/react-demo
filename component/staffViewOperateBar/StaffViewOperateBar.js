@@ -3,9 +3,9 @@
  */
 import React from 'react'
 import { Form, Input, Dropdown } from 'semantic-ui-react'
-import { staffSelectOptions, sortMethodOptions } from './StaffHeaderConstants'
+import { staffSelectOptions, sortMethodOptions } from './staffViewOperateBarConstants'
 
-class StaffHeaderOperateBar extends React.Component {
+class StaffViewOperateBar extends React.Component {
     render() {
         return(
             <Form>
@@ -35,5 +35,5 @@ class StaffHeaderOperateBar extends React.Component {
     }
 }
 
-export default StaffHeaderOperateBar
+export default StaffViewOperateBar
 

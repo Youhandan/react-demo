@@ -2,7 +2,6 @@
  * Created by youhandan on 2016/11/23.
  */
 import React from 'react'
-import { sexOptions, roleOptions } from './staffAdditionConstants'
 import {
     Form,
     Input,
@@ -14,10 +13,12 @@ import {
     Segment
 } from 'semantic-ui-react'
 
+import { sexes, roles } from 'component/managerSystem/managerSystemConstants'
+
 class StaffAddition extends React.Component {
     render() {
         return (
-            <Segment textAlign='center'>
+            <Segment textAlign='center' attached>
                 <Header as='h3'>人员新增</Header>
                 <Divider section/>
                 <Form>
@@ -32,17 +33,17 @@ class StaffAddition extends React.Component {
                     <Form.Field>
                         <label>性别</label>
                         <Dropdown
-                            defaultValue={sexOptions[0].value}
+                            defaultValue={sexes[0].value}
                             selection
-                            options={sexOptions}
+                            options={sexes}
                         />
                     </Form.Field>
                     <Form.Field>
                         <label>身份</label>
                         <Dropdown
-                            defaultValue={roleOptions[0].value}
+                            defaultValue={roles[0].value}
                             selection
-                            options={roleOptions}
+                            options={roles}
                         />
                     </Form.Field>
                     <Form.Field>

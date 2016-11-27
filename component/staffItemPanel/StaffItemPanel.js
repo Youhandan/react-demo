@@ -13,7 +13,6 @@ class StaffItemPanel extends React.Component {
     }
 
     handleDeleteStaffItem(key) {
-        debugger
         let newStaffData = this.props.items
         delete newStaffData[key]
         this.props.onStaffChange(newStaffData)

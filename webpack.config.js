@@ -1,5 +1,7 @@
 var path = require('path')
 
+
+
 var config = {
     entry: './main.js',
 
@@ -19,7 +21,7 @@ var config = {
         ]
     },
 
-    devtool: 'cheap-module-source-map',
+    devtool: 'source-map',
 
     module: {
         loaders: [ {

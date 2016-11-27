@@ -15,6 +15,7 @@ class StaffItem extends React.Component {
         this.handleShowStaffDetail = this.handleShowStaffDetail.bind(this)
         this.handleStaffDetailComplete = this.handleStaffDetailComplete.bind(this)
         this.handleStaffDetailClose = this.handleStaffDetailClose.bind(this)
+        this.handleStaffDelete = this.handleStaffDelete.bind(this)
 
 
     }
@@ -31,6 +32,10 @@ class StaffItem extends React.Component {
 
     }
 
+    handleStaffDelete() {
+        this.props.onStaffItemDelete( this.props.index)
+    }
+
     render() {
         return (
             <Table.Row textAlign='center'>
@@ -39,7 +44,7 @@ class StaffItem extends React.Component {
                 <Table.Cell>{ this.props.item.role }</Table.Cell>
                 <Table.Cell>{ this.props.item.sex }</Table.Cell>
                 <Table.Cell>
-                    <a style={{margin: 10, cursor: 'pointer'}}>删除</a>
+                    <a style={{margin: 10, cursor: 'pointer'}} onClick={this.handleStaffDelete}>删除</a>
                     <a style={{margin: 10, cursor: 'pointer'}} onClick={this.handleShowStaffDetail}>详情</a>
                 </Table.Cell>
                 <StaffDetail

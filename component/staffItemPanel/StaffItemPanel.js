@@ -2,25 +2,43 @@
  * Created by youhandan on 2016/11/23.
  */
 import React from 'react'
-import { Table } from 'semantic-ui-react'
+import { isEmpty } from 'lodash'
+import {Table} from 'semantic-ui-react'
 import StaffItem from './StaffItem'
 
 class StaffItemPanel extends React.Component {
     constructor(props) {
         super(props)
+        this.handleDeleteStaffItem = this.handleDeleteStaffItem.bind(this)
     }
+
+    handleDeleteStaffItem(key) {
+        debugger
+        let newStaffData = this.props.items
+        delete newStaffData[key]
+        this.props.onStaffChange(newStaffData)
+    }
+
     render() {
-        let items = []
-        if(this.props.items.length == 0) {
-            items.push(
+        let staffItems = []
+        if (isEmpty(this.props.items)) {
+            staffItems.push(
                 <Table.Row textAlign='center'>
                     <Table.Cell>暂无用户</Table.Cell>
                 </Table.Row>
-                );
-        }else {
-            this.props.items.forEach( (item, index) => {
-                items.push(<StaffItem key={index} item={item}/>);
-            });
+            )
+        } else {
+            for (let index in this.props.items) {
+                staffItems.push(
+                    <StaffItem
+                        key={index}
+                        index={index}
+                        item={this.props.items[index]}
+                        onStaffItemDelete={this.handleDeleteStaffItem}
+
+                    />
+                )
+            }
         }
         return (
             <Table striped attached>
@@ -35,7 +53,7 @@ class StaffItemPanel extends React.Component {
                 </Table.Header>
 
                 <Table.Body>
-                    { items }
+                    { staffItems }
                 </Table.Body>
             </Table>
         )

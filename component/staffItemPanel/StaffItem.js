@@ -7,6 +7,13 @@ import StaffDetail from './StaffDetail'
 
 class StaffItem extends React.Component {
 
+    static propTypes = {
+        item: React.PropTypes.object.isRequired,
+        onStaffItemDelete: React.PropTypes.func.isRequired,
+        onModifyStaffItem: React.PropTypes.func.isRequired,
+        index :React.PropTypes.string.isRequired
+    }
+
     constructor(props) {
         super (props)
         this.state = {
@@ -21,19 +28,24 @@ class StaffItem extends React.Component {
     }
 
     handleShowStaffDetail() {
+
         this.setState({ staffDetailOpen: true })
     }
 
-    handleStaffDetailComplete() {
-        this.setState({ staffDetailOpen: false })
+    handleStaffDetailComplete(modifiedStaffInformation, index) {
+
+        this.props.onModifyStaffItem(modifiedStaffInformation, index)
     }
+
     handleStaffDetailClose() {
+
         this.setState({ staffDetailOpen: false })
 
     }
 
     handleStaffDelete() {
-        this.props.onStaffItemDelete( this.props.index)
+
+        this.props.onStaffItemDelete(this.props.index)
     }
 
     render() {
@@ -48,9 +60,11 @@ class StaffItem extends React.Component {
                     <a style={{margin: 10, cursor: 'pointer'}} onClick={this.handleShowStaffDetail}>详情</a>
                 </Table.Cell>
                 <StaffDetail
+                    index={this.props.index}
                     isOpen={this.state.staffDetailOpen}
                     onComplete={this.handleStaffDetailComplete}
                     onClose={this.handleStaffDetailClose}
+                    staffInformation={this.props.item}
                 />
             </Table.Row>
         )

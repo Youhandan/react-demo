@@ -54,7 +54,10 @@ class ManagerSystem extends React.Component {
                         </Segment>
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        < StaffAddition />
+                        <StaffAddition
+                            staffData={this.state.staffData}
+                            onStaffChange={this.handleStaffChange}
+                        />
                     </Grid.Column>
                 </Grid>
             </div>

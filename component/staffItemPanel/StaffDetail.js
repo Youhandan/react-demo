@@ -3,7 +3,7 @@
  */
 import React, {PropTypes} from 'react'
 import {Button, Modal, Dropdown, Input, Form, TextArea, Container, Message} from 'semantic-ui-react'
-import {sexes, roles} from '../managerSystem/managerSystemConstants'
+import {sexes, roles} from '../managerSystemLayout/managerSystemConstants'
 
 class StaffDetail extends React.Component {
 

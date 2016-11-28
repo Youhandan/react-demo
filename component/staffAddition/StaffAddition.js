@@ -14,7 +14,7 @@ import {
     Message
 } from 'semantic-ui-react'
 
-import {sexes, roles} from '../managerSystem/managerSystemConstants'
+import {sexes, roles} from '../managerSystemLayout/managerSystemConstants'
 
 class StaffAddition extends React.Component {
 

@@ -1,7 +1,7 @@
 /**
  * Created by youhandan on 2016/11/23.
  */
-import { roles } from '../managerSystem/managerSystemConstants'
+import { roles } from '../managerSystemLayout/managerSystemConstants'
 
 
 export const staffSelectOptions = [

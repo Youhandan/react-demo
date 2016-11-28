@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ManagerSystem from 'component/managerSystem/ManagerSystem'
+import ManagerSystem from 'component/managerSystemLayout/managerSystemLayout'
 
 class App extends React.Component {
     render() {

@@ -96,7 +96,6 @@ class StaffAddition extends React.Component {
                 isShowSuccessMessage: true
 
             })
-            console.log(this.state.isShowSuccessMessage)
 
             setTimeout(()=>this.setState({
                 isShowSuccessMessage: false,
@@ -150,7 +149,6 @@ class StaffAddition extends React.Component {
     }
 
     render() {
-        console.log(this.state.isShowSuccessMessage,this.state.isHiddenFailMessage)
         return (
             <Segment textAlign='center' attached>
                 <Header as='h3'>人员新增</Header>

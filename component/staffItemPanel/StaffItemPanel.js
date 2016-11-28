@@ -3,14 +3,18 @@
  */
 import React from 'react'
 import { isEmpty } from 'lodash'
-import {Table} from 'semantic-ui-react'
+import { Table } from 'semantic-ui-react'
 import StaffItem from './StaffItem'
+import { search } from './Filter'
 
 class StaffItemPanel extends React.Component {
 
     static propTypes = {
-        items: React.PropTypes.object.isRequired,
-        onStaffChange: React.PropTypes.func.isRequired
+        staffItems: React.PropTypes.object.isRequired,
+        onStaffChange: React.PropTypes.func.isRequired,
+        searchText: React.PropTypes.string.isRequired,
+        staffSelectBy: React.PropTypes.string.isRequired,
+        staffSortBy: React.PropTypes.string.isRequired,
     }
 
     constructor(props) {
@@ -20,36 +24,33 @@ class StaffItemPanel extends React.Component {
     }
 
     handleDeleteStaffItem(key) {
-
-        let newStaffData = this.props.items
+        let newStaffData = this.props.staffItems
         delete newStaffData[key]
         this.props.onStaffChange(newStaffData)
-
     }
 
     handleModifyStaffItemInformation(staffNewInformation, index) {
-
-        let newStaffData = this.props.items
+        let newStaffData = this.props.staffItems
         newStaffData[index] = staffNewInformation
         this.props.onStaffChange(newStaffData)
-
     }
 
     render() {
-        let staffItems = []
-        if (isEmpty(this.props.items)) {
-            staffItems.push(
+        let filteredStaffItem = search(this.props.searchText, this.props.staffItems)
+        let staffViewItems = []
+        if (isEmpty(filteredStaffItem)) {
+            staffViewItems.push(
                 <Table.Row textAlign='center' key='no'>
                     <Table.Cell colSpan='16'>暂无用户</Table.Cell>
                 </Table.Row>
             )
         } else {
-            for (let index in this.props.items) {
-                staffItems.push(
+            for (let index in filteredStaffItem) {
+                staffViewItems.push(
                     <StaffItem
                         key={index}
                         index={index}
-                        item={this.props.items[index]}
+                        item={filteredStaffItem[index]}
                         onStaffItemDelete={this.handleDeleteStaffItem}
                         onModifyStaffItem={this.handleModifyStaffItemInformation}
                     />
@@ -69,7 +70,7 @@ class StaffItemPanel extends React.Component {
                 </Table.Header>
 
                 <Table.Body>
-                    { staffItems }
+                    { staffViewItems }
                 </Table.Body>
             </Table>
         )

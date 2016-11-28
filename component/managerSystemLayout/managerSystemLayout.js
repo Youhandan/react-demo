@@ -26,18 +26,41 @@ class ManagerSystem extends React.Component {
         super(props)
         this.state = {
             staffData: staffData,
-            isStaffDetailModalOpen : false
-
+            searchText: '',
+            staffSelectBy: '全部',
+            staffSortBy: '身份'
         }
 
         this.handleStaffChange = this.handleStaffChange.bind(this)
+        this.handleSearchTextChange = this.handleSearchTextChange.bind(this)
+        this.handleStaffSelectByChange = this.handleStaffSelectByChange.bind(this)
+        this.handleStaffSortByChange = this.handleStaffSortByChange.bind(this)
     }
 
     handleStaffChange(newStaffData) {
-        this.setState ( {
+        this.setState({
             staffData: newStaffData
         })
     }
+
+    handleSearchTextChange(newSearchText) {
+        this.setState({
+            searchText: newSearchText
+        })
+    }
+
+    handleStaffSelectByChange(newStaffSelectBy) {
+        this.setState({
+            staffSelectBy: newStaffSelectBy
+        })
+    }
+
+    handleStaffSortByChange(newStaffSortBy) {
+        this.setState({
+            staffSortBy: newStaffSortBy
+        })
+    }
+
     render() {
         return (
             <div>
@@ -47,10 +70,18 @@ class ManagerSystem extends React.Component {
                 <Grid>
                     <Grid.Column width={12}>
                         <Segment textAlign='center'>
-                            <StaffViewOperateBar />
+                            <StaffViewOperateBar
+                                onSearchTextChange={this.handleSearchTextChange}
+                                onStaffSelectByChange={this.handleStaffSelectByChange}
+                                onStaffSortByChange={this.handleStaffSortByChange}
+                            />
                             <StaffItemPanel
-                                items={this.state.staffData}
-                                onStaffChange={this.handleStaffChange}/>
+                                staffItems={this.state.staffData}
+                                onStaffChange={this.handleStaffChange}
+                                searchText={this.state.searchText}
+                                staffSelectBy={this.state.staffSelectBy}
+                                staffSortBy={this.state.staffSortBy}
+                            />
                         </Segment>
                     </Grid.Column>
                     <Grid.Column width={4}>

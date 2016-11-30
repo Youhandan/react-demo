@@ -1,6 +1,7 @@
 /**
  * Created by youhandan on 2016/11/28.
  */
+import { sortBy, orderBy } from 'lodash'
 
 export const search = (searchText, staffItems) => {
     return staffItems.filter((staff) => {
@@ -30,10 +31,10 @@ export const staffSort = (staffSortBy, staffItems) => {
             return sortByRole(staffItems)
         }
         case '年龄升': {
-            break
+            return sortByAge(staffItems, 'asc')
         }
         case '年龄降': {
-            break
+            return sortByAge(staffItems, 'desc')
         }
     }
 }
@@ -56,4 +57,8 @@ const sortByRole = (staffItems) => {
         })
     }
     return sortResult
+}
+
+const sortByAge = (staffItems, sortMethod) => {
+    return orderBy(staffItems, 'age', sortMethod)
 }

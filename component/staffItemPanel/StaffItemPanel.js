@@ -5,7 +5,7 @@ import React from 'react'
 import { isEmpty } from 'lodash'
 import { Table } from 'semantic-ui-react'
 import StaffItem from './StaffItem'
-import { search } from './Filter'
+import { search, staffSelect } from './Filter'
 
 class StaffItemPanel extends React.Component {
 
@@ -36,7 +36,8 @@ class StaffItemPanel extends React.Component {
     }
 
     render() {
-        let filteredStaffItem = search(this.props.searchText, this.props.staffItems)
+        let searchFilteredStaffItem = search(this.props.searchText, this.props.staffItems)
+        let filteredStaffItem = staffSelect(this.props.staffSelectBy, searchFilteredStaffItem)
         let staffViewItems = []
         if (isEmpty(filteredStaffItem)) {
             staffViewItems.push(

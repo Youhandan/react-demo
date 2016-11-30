@@ -13,13 +13,14 @@ import {
     Segment,
     Message
 } from 'semantic-ui-react'
+import { max } from 'lodash'
 
 import {sexes, roles} from '../managerSystemLayout/managerSystemConstants'
 
 class StaffAddition extends React.Component {
 
     static propTypes = {
-        staffData: React.PropTypes.object.isRequired,
+        staffData: React.PropTypes.array.isRequired,
         onStaffChange: React.PropTypes.func.isRequired
     }
 
@@ -81,14 +82,16 @@ class StaffAddition extends React.Component {
         } else {
 
             let newStaffData = this.props.staffData
-            const index = parseInt(Object.keys(newStaffData).pop()) + 1
-            newStaffData[index] = {
+            const staffIds = newStaffData.map( (staff) => staff.id)
+            const newStaffId = max(staffIds)+1
+            newStaffData.push( {
                 'name': this.state.newStaffName,
                 'age': this.state.newStaffAge,
                 'sex': this.state.newStaffSex,
                 'role': this.state.newStaffRole,
-                'description': this.state.newStaffDescription
-            }
+                'description': this.state.newStaffDescription,
+                'id': newStaffId
+            })
 
             this.props.onStaffChange(newStaffData)
 

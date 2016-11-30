@@ -12,7 +12,7 @@ class StaffDetail extends React.Component {
         onComplete: React.PropTypes.func.isRequired,
         onClose: React.PropTypes.func.isRequired,
         staffInformation :React.PropTypes.object.isRequired,
-        index :React.PropTypes.string.isRequired
+        staffId :React.PropTypes.number.isRequired
     }
 
 
@@ -105,7 +105,7 @@ class StaffDetail extends React.Component {
             modifiedStaffInformation.role  = this.state.currentRole
             modifiedStaffInformation.description  = this.state.currentDescription
 
-            this.props.onComplete(modifiedStaffInformation, this.props.index)
+            this.props.onComplete(modifiedStaffInformation, this.props.staffId)
 
             this.setState({
                 isHiddenSuccessMessage: false

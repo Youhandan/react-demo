@@ -3,28 +3,57 @@
  */
 
 export const search = (searchText, staffItems) => {
-    let searchFilteredStaffData = {}
-    for (let staffIndex in staffItems) {
-        for (let InformationItem in staffItems[staffIndex]) {
-            const itemValue = staffItems[staffIndex][InformationItem]
+    return staffItems.filter((staff) => {
+        for (let InformationItem in staff) {
+            const itemValue = staff[InformationItem]
             if (itemValue.toString().indexOf(searchText) !== -1) {
-                searchFilteredStaffData[staffIndex] = staffItems[staffIndex]
+                return staff
             }
         }
-    }
-    return searchFilteredStaffData
+
+    })
 }
 
 export const staffSelect = (staffSelectBy, staffItems) => {
-    let selectFilteredStaffData = {}
     if (staffSelectBy !== '全部') {
-        for (let staffIndex in staffItems) {
-            const staffRole = staffItems[staffIndex]['role']
-            if (staffRole === staffSelectBy) selectFilteredStaffData[staffIndex] = staffItems[staffIndex]
-        }
-        return selectFilteredStaffData
-
+        return staffItems.filter( (staff) => {
+            if (staff.role === staffSelectBy) return staff
+        })
     }
     return staffItems
 
+}
+
+export const staffSort = (staffSortBy, staffItems) => {
+    switch (staffSortBy) {
+        case '身份': {
+            return sortByRole(staffItems)
+        }
+        case '年龄升': {
+            break
+        }
+        case '年龄降': {
+            break
+        }
+    }
+}
+
+const sortByRole = (staffItems) => {
+    let sortResult = []
+    let roleGroup = {}
+    staffItems.forEach( (staff) => {
+        const staffRole = staff.role
+        const hasStaffRole = staffRole in roleGroup
+        if (!hasStaffRole) {
+            roleGroup[staffRole] = []
+            roleGroup[staffRole].push(staff)
+        }else roleGroup[staffRole].push(staff)
+    } )
+
+    for (let role in roleGroup ) {
+        roleGroup[role].forEach((staff) => {
+            sortResult.push(staff)
+        })
+    }
+    return sortResult
 }

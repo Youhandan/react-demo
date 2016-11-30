@@ -5,12 +5,12 @@ import React from 'react'
 import { isEmpty } from 'lodash'
 import { Table } from 'semantic-ui-react'
 import StaffItem from './StaffItem'
-import { search, staffSelect } from './Filter'
+import { search, staffSelect, staffSort } from './Filter'
 
 class StaffItemPanel extends React.Component {
 
     static propTypes = {
-        staffItems: React.PropTypes.object.isRequired,
+        staffItems: React.PropTypes.array.isRequired,
         onStaffChange: React.PropTypes.func.isRequired,
         searchText: React.PropTypes.string.isRequired,
         staffSelectBy: React.PropTypes.string.isRequired,
@@ -23,21 +23,30 @@ class StaffItemPanel extends React.Component {
         this.handleModifyStaffItemInformation = this.handleModifyStaffItemInformation.bind(this)
     }
 
-    handleDeleteStaffItem(key) {
+    handleDeleteStaffItem(staffId) {
         let newStaffData = this.props.staffItems
-        delete newStaffData[key]
+        newStaffData.forEach( (staff, staffIndex) => {
+            if (staff.id === staffId) {
+                newStaffData.splice(staffIndex,1)
+            }
+        })
         this.props.onStaffChange(newStaffData)
     }
 
-    handleModifyStaffItemInformation(staffNewInformation, index) {
+    handleModifyStaffItemInformation(staffNewInformation, staffId) {
         let newStaffData = this.props.staffItems
-        newStaffData[index] = staffNewInformation
+        newStaffData.forEach( (staff, staffIndex) => {
+            if (staff.id === staffId) {
+                newStaffData[staffIndex] = staffNewInformation
+            }
+        })
         this.props.onStaffChange(newStaffData)
     }
 
     render() {
         let searchFilteredStaffItem = search(this.props.searchText, this.props.staffItems)
-        let filteredStaffItem = staffSelect(this.props.staffSelectBy, searchFilteredStaffItem)
+        let selectStaffItem = staffSelect(this.props.staffSelectBy, searchFilteredStaffItem)
+        let filteredStaffItem = staffSort(this.props.staffSortBy, selectStaffItem)
         let staffViewItems = []
         if (isEmpty(filteredStaffItem)) {
             staffViewItems.push(
@@ -46,17 +55,18 @@ class StaffItemPanel extends React.Component {
                 </Table.Row>
             )
         } else {
-            for (let index in filteredStaffItem) {
-                staffViewItems.push(
+            staffViewItems = filteredStaffItem.map( (staff) => {
+                return(
                     <StaffItem
-                        key={index}
-                        index={index}
-                        item={filteredStaffItem[index]}
+                        key={staff.id}
+                        staffId={staff.id}
+                        staffItem={staff}
                         onStaffItemDelete={this.handleDeleteStaffItem}
                         onModifyStaffItem={this.handleModifyStaffItemInformation}
                     />
+
                 )
-            }
+            })
         }
         return (
             <Table striped attached>

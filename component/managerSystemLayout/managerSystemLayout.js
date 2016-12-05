@@ -28,7 +28,7 @@ class ManagerSystem extends React.Component {
             staffData: staffData,
             searchText: '',
             staffSelectBy: '全部',
-            staffSortBy: '身份'
+            staffSortBy: 'role'
         }
 
         this.handleStaffChange = this.handleStaffChange.bind(this)

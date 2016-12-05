@@ -127,18 +127,18 @@ class StaffAddition extends React.Component {
 
     }
 
-    handleNewStaffSex(e) {
+    handleNewStaffSex(e, {value}) {
 
         this.setState({
-            newStaffSex: e.target.textContent
+            newStaffSex: value
         })
 
     }
 
-    handleNewStaffRole(e) {
+    handleNewStaffRole(e, {value}) {
 
         this.setState({
-            newStaffRole: e.target.textContent
+            newStaffRole: value
         })
 
     }

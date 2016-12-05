@@ -26,13 +26,15 @@ class StaffViewOperateBar extends React.Component {
 
     }
 
-    handleStaffSelectChange(e) {
-        const newStaffSelectBy = e.target.textContent
+    handleStaffSelectChange(e, {value}) {
+        debugger
+        const newStaffSelectBy = value
         this.props.onStaffSelectByChange(newStaffSelectBy)
     }
 
-    handleStaffSortChange(e) {
-        const newStaffSortBy = e.target.textContent
+    handleStaffSortChange(e, {value}) {
+        debugger
+        const newStaffSortBy = value
         this.props.onStaffSortByChange(newStaffSortBy)
     }
 

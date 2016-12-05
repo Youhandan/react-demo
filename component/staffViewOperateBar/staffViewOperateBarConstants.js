@@ -5,7 +5,7 @@ import { roles } from '../managerSystemLayout/managerSystemConstants'
 
 
 export const staffSelectOptions = [
-    { text: '全部', value: 'whole' }
+    { text: '全部', value: '全部' }
 ].concat(roles)
 
 export const sortMethodOptions = [

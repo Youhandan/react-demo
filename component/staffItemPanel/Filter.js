@@ -27,13 +27,13 @@ export const staffSelect = (staffSelectBy, staffItems) => {
 
 export const staffSort = (staffSortBy, staffItems) => {
     switch (staffSortBy) {
-        case '身份': {
+        case 'role': {
             return sortByRole(staffItems)
         }
-        case '年龄升': {
+        case 'ageUp': {
             return sortByAge(staffItems, 'asc')
         }
-        case '年龄降': {
+        case 'ageDown': {
             return sortByAge(staffItems, 'desc')
         }
     }

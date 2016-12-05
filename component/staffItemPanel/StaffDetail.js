@@ -105,14 +105,16 @@ class StaffDetail extends React.Component {
             modifiedStaffInformation.role  = this.state.currentRole
             modifiedStaffInformation.description  = this.state.currentDescription
 
-            this.props.onComplete(modifiedStaffInformation, this.props.staffId)
-
             this.setState({
                 isHiddenSuccessMessage: false
             })
-            setTimeout(()=>this.setState({
-                isHiddenSuccessMessage: true
-            }),2000)
+            setTimeout(()=>{
+                this.setState({
+                isHiddenSuccessMessage: true})
+                this.props.onComplete(modifiedStaffInformation, this.props.staffId)
+            },2000)
+
+
 
         }
     }

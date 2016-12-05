@@ -28,23 +28,20 @@ class StaffItem extends React.Component {
     }
 
     handleShowStaffDetail() {
-
         this.setState({ staffDetailOpen: true })
     }
 
     handleStaffDetailComplete(modifiedStaffInformation, staffId) {
-
+        this.setState({ staffDetailOpen: false })
         this.props.onModifyStaffItem(modifiedStaffInformation, staffId)
     }
 
     handleStaffDetailClose() {
-
         this.setState({ staffDetailOpen: false })
 
     }
 
     handleStaffDelete() {
-
         this.props.onStaffItemDelete(this.props.staffId)
     }
 

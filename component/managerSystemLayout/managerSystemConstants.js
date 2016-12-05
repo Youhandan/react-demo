@@ -1,14 +1,27 @@
 /**
  * Created by youhandan on 2016/11/25.
  */
+export const male = '男'
+export const female = '女'
+export const master = '主任'
+export const student = '学生'
+export const teacher = '老师'
+export const intern = '实习'
+export const whole = '全部'
+export const role = '身份'
+export const ageUp = '年龄升'
+export const ageDown = '年龄降'
+
+
 export const sexes = [
-    { text: '男', value: '男' },
-    { text: '女', value: '女' },
+    { text: male, value: male },
+    { text: female, value: female },
 ]
 
 export const roles = [
-    { text: '主任', value: '主任' },
-    { text: '学生', value: '学生' },
-    { text: '老师', value: '老师' },
-    { text: '实习', value: '实习' },
+    { text: master, value: master },
+    { text: student , value: student },
+    { text: teacher, value: teacher },
+    { text: intern, value: intern },
 ]
+

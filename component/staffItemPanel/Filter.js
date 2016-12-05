@@ -2,6 +2,7 @@
  * Created by youhandan on 2016/11/28.
  */
 import { sortBy, orderBy } from 'lodash'
+import { ageDown, ageUp, role, whole} from '../managerSystemLayout/managerSystemConstants'
 
 export const search = (searchText, staffItems) => {
     return staffItems.filter((staff) => {
@@ -16,7 +17,7 @@ export const search = (searchText, staffItems) => {
 }
 
 export const staffSelect = (staffSelectBy, staffItems) => {
-    if (staffSelectBy !== '全部') {
+    if (staffSelectBy !== whole) {
         return staffItems.filter( (staff) => {
             if (staff.role === staffSelectBy) return staff
         })
@@ -27,13 +28,13 @@ export const staffSelect = (staffSelectBy, staffItems) => {
 
 export const staffSort = (staffSortBy, staffItems) => {
     switch (staffSortBy) {
-        case 'role': {
+        case role: {
             return sortByRole(staffItems)
         }
-        case 'ageUp': {
+        case ageUp: {
             return sortByAge(staffItems, 'asc')
         }
-        case 'ageDown': {
+        case ageDown: {
             return sortByAge(staffItems, 'desc')
         }
     }

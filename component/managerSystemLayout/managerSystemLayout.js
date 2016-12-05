@@ -7,6 +7,7 @@ import { Segment, Header, Grid } from 'semantic-ui-react'
 import StaffViewOperateBar from 'component/staffViewOperateBar/StaffViewOperateBar'
 import StaffItemPanel from 'component/staffItemPanel/StaffItemPanel'
 import StaffAddition from 'component/staffAddition/StaffAddition'
+import { whole, role } from './managerSystemConstants'
 
 var staffData = [
     {description: '我是一匹来自远方的狼。', sex: '男', age: 20, name: '张三', role: '主任', id: 1},
@@ -27,8 +28,8 @@ class ManagerSystem extends React.Component {
         this.state = {
             staffData: staffData,
             searchText: '',
-            staffSelectBy: '全部',
-            staffSortBy: 'role'
+            staffSelectBy: whole,
+            staffSortBy: role
         }
 
         this.handleStaffChange = this.handleStaffChange.bind(this)

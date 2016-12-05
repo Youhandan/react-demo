@@ -40,23 +40,7 @@ export const staffSort = (staffSortBy, staffItems) => {
 }
 
 const sortByRole = (staffItems) => {
-    let sortResult = []
-    let roleGroup = {}
-    staffItems.forEach( (staff) => {
-        const staffRole = staff.role
-        const hasStaffRole = staffRole in roleGroup
-        if (!hasStaffRole) {
-            roleGroup[staffRole] = []
-            roleGroup[staffRole].push(staff)
-        }else roleGroup[staffRole].push(staff)
-    } )
-
-    for (let role in roleGroup ) {
-        roleGroup[role].forEach((staff) => {
-            sortResult.push(staff)
-        })
-    }
-    return sortResult
+    return sortBy(staffItems, 'role')
 }
 
 const sortByAge = (staffItems, sortMethod) => {

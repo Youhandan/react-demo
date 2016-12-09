@@ -2,10 +2,11 @@
  * Created by youhandan on 2016/11/23.
  */
 import React from 'react'
-import { isEmpty } from 'lodash'
-import { Table } from 'semantic-ui-react'
+import {isEmpty} from 'lodash'
+import {Table} from 'semantic-ui-react'
 import StaffItem from './StaffItem'
-import { search, staffSelect, staffSort } from './Filter'
+import StaffDetailDialog from './StaffDetailDialog'
+import {search, staffSelect, staffSort} from './Filter'
 
 class StaffItemPanel extends React.Component {
 
@@ -19,29 +20,57 @@ class StaffItemPanel extends React.Component {
 
     constructor(props) {
         super(props)
+        this.state = {
+            isOpenStaffDetailDialog: false,
+            staffDetail: {}
+        }
         this.handleDeleteStaffItem = this.handleDeleteStaffItem.bind(this)
         this.handleModifyStaffItemInformation = this.handleModifyStaffItemInformation.bind(this)
+        this.handleStaffDetailComplete = this.handleStaffDetailComplete.bind(this)
+        this.handleStaffDetailClose = this.handleStaffDetailClose.bind(this)
+
     }
 
     handleDeleteStaffItem(staffId) {
         let newStaffData = this.props.staffItems
-        newStaffData.forEach( (staff, staffIndex) => {
+        newStaffData.forEach((staff, staffIndex) => {
             if (staff.id === staffId) {
-                newStaffData.splice(staffIndex,1)
+                newStaffData.splice(staffIndex, 1)
             }
         })
         this.props.onStaffChange(newStaffData)
     }
 
-    handleModifyStaffItemInformation(staffNewInformation, staffId) {
-        let newStaffData = this.props.staffItems
-        newStaffData.forEach( (staff, staffIndex) => {
+    handleModifyStaffItemInformation(staffId) {
+        this.props.staffItems.forEach((staff) => {
             if (staff.id === staffId) {
-                newStaffData[staffIndex] = staffNewInformation
+                this.setState({
+                    staffDetail: staff,
+                    isOpenStaffDetailDialog: true
+                })
             }
         })
-        this.props.onStaffChange(newStaffData)
     }
+
+    handleStaffDetailComplete(modifiedStaffInformation) {
+        const newStaffItems = [...this.props.staffItems]
+        newStaffItems.forEach((staff, staffIndex) => {
+            if (staff.id === modifiedStaffInformation.id) {
+                newStaffItems[staffIndex] = modifiedStaffInformation
+            }
+        })
+        this.props.onStaffChange(newStaffItems)
+        this.handleStaffDetailClose()
+    }
+
+    handleStaffDetailClose() {
+        this.setState({
+            isOpenStaffDetailDialog: false,
+            staffDetail: {}
+        })
+
+    }
+
 
     render() {
         let searchFilteredStaffItem = search(this.props.searchText, this.props.staffItems)
@@ -55,11 +84,10 @@ class StaffItemPanel extends React.Component {
                 </Table.Row>
             )
         } else {
-            staffViewItems = filteredStaffItem.map( (staff) => {
-                return(
+            staffViewItems = filteredStaffItem.map((staff) => {
+                return (
                     <StaffItem
                         key={staff.id}
-                        staffId={staff.id}
                         staffItem={staff}
                         onStaffItemDelete={this.handleDeleteStaffItem}
                         onModifyStaffItem={this.handleModifyStaffItemInformation}
@@ -69,21 +97,29 @@ class StaffItemPanel extends React.Component {
             })
         }
         return (
-            <Table striped attached>
-                <Table.Header>
-                    <Table.Row textAlign='center'>
-                        <Table.HeaderCell>姓名</Table.HeaderCell>
-                        <Table.HeaderCell>年龄</Table.HeaderCell>
-                        <Table.HeaderCell>身份</Table.HeaderCell>
-                        <Table.HeaderCell>性别</Table.HeaderCell>
-                        <Table.HeaderCell>操作</Table.HeaderCell>
-                    </Table.Row>
-                </Table.Header>
+            <div>
+                <Table striped attached>
+                    <Table.Header>
+                        <Table.Row textAlign='center'>
+                            <Table.HeaderCell>姓名</Table.HeaderCell>
+                            <Table.HeaderCell>年龄</Table.HeaderCell>
+                            <Table.HeaderCell>身份</Table.HeaderCell>
+                            <Table.HeaderCell>性别</Table.HeaderCell>
+                            <Table.HeaderCell>操作</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                <Table.Body>
-                    { staffViewItems }
-                </Table.Body>
-            </Table>
+                    <Table.Body>
+                        { staffViewItems }
+                    </Table.Body>
+                </Table>
+                <StaffDetailDialog
+                    isOpen={this.state.isOpenStaffDetailDialog}
+                    onComplete={this.handleStaffDetailComplete}
+                    onClose={this.handleStaffDetailClose}
+                    staffInformation={this.state.staffDetail}
+                />
+            </div>
         )
     }
 

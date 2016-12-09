@@ -21,7 +21,7 @@ class StaffDetailDialog extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            currentStaffInformation: { ...props.staffInformation },
+            currentStaffInformation: this.props.staffInformation ,
             messageHeader: '',
             messageHidden: true,
             messageContent: '',
@@ -31,6 +31,10 @@ class StaffDetailDialog extends React.Component {
         this.handleChange = this.handleChange.bind(this)
         this.handleComplete = this.handleComplete.bind(this)
         this.handleClose = this.handleClose.bind(this)
+    }
+
+    componentWillReceiveProps({staffInformation}) {
+        this.setState({currentStaffInformation: staffInformation})
     }
 
     handleChange(currentStaffInformation) {

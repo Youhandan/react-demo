@@ -25,3 +25,11 @@ export const roles = [
     { text: intern, value: intern },
 ]
 
+export const initialNewStaff = {
+        name: '',
+        age: '',
+        sex: '男',
+        role: '主任',
+        description: ''
+}
+

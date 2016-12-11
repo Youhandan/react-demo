@@ -18,8 +18,8 @@ export class Notification extends React.Component {
     }
 
     render() {
-        const { header, isHidden, content} = this.props
-        if (this.props.status === 'success') {
+        const { header, isHidden, content, status} = this.props
+        if (status === 'success') {
             return (
                 <Message
                     attached
@@ -30,7 +30,7 @@ export class Notification extends React.Component {
                 />
             )
         }
-        if (this.props.status === 'negative') {
+        if (status === 'negative') {
             return (
                 <Message
                     attached

@@ -3,6 +3,7 @@
  */
 import React, {PropTypes} from 'react'
 import {Button, Modal, Form, Container} from 'semantic-ui-react'
+
 import {staffFormValidation} from '../commons/staffFormValidation'
 import {Notification, resetMessage} from '../commons/Notification'
 import StaffForm from '../commons/StaffForm'
@@ -16,7 +17,6 @@ class StaffDetailDialog extends React.Component {
         onClose: React.PropTypes.func.isRequired,
         staffInformation: React.PropTypes.object.isRequired,
     }
-
 
     constructor(props) {
         super(props)
@@ -65,11 +65,12 @@ class StaffDetailDialog extends React.Component {
             setTimeout(()=> {
                 this.setState(resetMessage)
             }, 2000)
+
+            this.props.onComplete(this.state.currentStaffInformation)
         }
     }
 
     handleClose() {
-        this.props.onComplete(this.state.currentStaffInformation)
         this.setState({currentStaffInformation: this.props.staffInformation})
         this.props.onClose()
     }

@@ -22,6 +22,10 @@ class StaffForm extends React.Component {
         this.state = { ...this.props.staffInformation }
     }
 
+    componentWillReceiveProps({staffInformation}) {
+        this.setState({ ...staffInformation})
+    }
+
     handleFormChange(key) {
         return (e) => {
             this.setState(
@@ -59,6 +63,7 @@ class StaffForm extends React.Component {
                 <Form.Field inline={this.props.isInline}>
                     <label>年龄</label>
                     <Input
+                        type='number'
                         value={age}
                         onChange={this.handleFormChange('age')}
                     />

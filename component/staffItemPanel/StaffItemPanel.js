@@ -71,7 +71,6 @@ class StaffItemPanel extends React.Component {
 
     }
 
-
     render() {
         let searchFilteredStaffItem = search(this.props.searchText, this.props.staffItems)
         let selectStaffItem = staffSelect(this.props.staffSelectBy, searchFilteredStaffItem)
@@ -122,7 +121,6 @@ class StaffItemPanel extends React.Component {
             </div>
         )
     }
-
 }
 
 export default StaffItemPanel

@@ -92,13 +92,13 @@ class StaffAddition extends React.Component {
                         staffInformation={this.state.newStaff}
                         isInline={false}
                     />
-                    <Notification
-                        header={this.state.messageHeader}
-                        content={this.state.messageContent}
-                        status={this.state.messageStatus}
-                        isHidden={this.state.messageHidden}
-                    />
                 </Form>
+                <Notification
+                    header={this.state.messageHeader}
+                    content={this.state.messageContent}
+                    status={this.state.messageStatus}
+                    isHidden={this.state.messageHidden}
+                />
                 <Button
                     style={{margin: 10}}
                     color='blue'

@@ -16,8 +16,7 @@ class StaffViewOperateBar extends React.Component {
         super(props)
 
         this.handleSearchTextChange = this.handleSearchTextChange.bind(this)
-        this.handleStaffSelectChange = this.handleStaffSelectChange.bind(this)
-        this.handleStaffSortChange = this.handleStaffSortChange.bind(this)
+        this.handleStaffDropDownChange = this.handleStaffDropDownChange.bind(this)
     }
 
     handleSearchTextChange(e) {
@@ -26,14 +25,13 @@ class StaffViewOperateBar extends React.Component {
 
     }
 
-    handleStaffSelectChange(e, {value}) {
-        const newStaffSelectBy = value
-        this.props.onStaffSelectByChange(newStaffSelectBy)
-    }
-
-    handleStaffSortChange(e, {value}) {
-        const newStaffSortBy = value
-        this.props.onStaffSortByChange(newStaffSortBy)
+    handleStaffDropDownChange(key) {
+        if (key === 'select') {
+            return (e, {value}) => this.props.onStaffSelectByChange(value)
+        }
+        else {
+            return (e, {value}) => this.props.onStaffSortByChange(value)
+        }
     }
 
     render() {
@@ -51,7 +49,7 @@ class StaffViewOperateBar extends React.Component {
                             defaultValue={staffSelectOptions[0].value}
                             selection
                             options={staffSelectOptions}
-                            onChange={this.handleStaffSelectChange}
+                            onChange={this.handleStaffDropDownChange('select')}
                         />
                     </Form.Field>
                     <Form.Field>
@@ -60,7 +58,7 @@ class StaffViewOperateBar extends React.Component {
                             defaultValue={sortMethodOptions[0].value}
                             selection
                             options={sortMethodOptions}
-                            onChange={this.handleStaffSortChange}
+                            onChange={this.handleStaffDropDownChange('sort')}
                         />
                     </Form.Field>
                 </Form.Group>

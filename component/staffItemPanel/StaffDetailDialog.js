@@ -85,7 +85,7 @@ class StaffDetailDialog extends React.Component {
                         <Container text textAlign='left'>
                             <StaffForm
                                 onChange={this.handleChange}
-                                staffInformation={this.props.staffInformation}
+                                staffInformation={this.state.currentStaffInformation}
                                 isInline={true}
                             />
                         </Container>

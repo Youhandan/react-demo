@@ -50,3 +50,12 @@ export const resetMessage = {
     messageContent: '',
     messageStatus: 'negative'
 }
+
+export const messageContent = (header, isHidden, content, status) => {
+    return {
+        messageHeader: header,
+        messageHidden: isHidden,
+        messageContent: content,
+        messageStatus: status
+    }
+}

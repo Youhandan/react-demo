@@ -3,11 +3,11 @@
  */
 import React from 'react'
 import {Header, Divider, Button, Segment, Form} from 'semantic-ui-react'
-import {max} from 'lodash'
 
 import StaffForm from '../commons/StaffForm'
 import {Notification, resetMessage, messageContent} from '../commons/Notification'
 import {staffFormValidation} from '../commons/staffFormValidation'
+import {addNewStaff} from './addNewStaff'
 
 import {initialNewStaff} from '../managerSystemLayout/managerSystemConstants'
 
@@ -25,8 +25,6 @@ class StaffAddition extends React.Component {
             newStaff: initialNewStaff,
             ...resetMessage
         }
-
-
 
         this.handleClick = this.handleClick.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -49,17 +47,7 @@ class StaffAddition extends React.Component {
             }, 2000)
 
         } else {
-            let newStaffData = [...this.props.staffData]
-            const staffIds = newStaffData.map((staff) => staff.id)
-            const newStaffId = max(staffIds) + 1
-            newStaffData.push({
-                'name': name,
-                'age': age,
-                'sex': sex,
-                'role': role,
-                'description': description,
-                'id': newStaffId
-            })
+            const newStaffData = addNewStaff(this.props.staffData, this.state.newStaff)
 
             const message = messageContent('录入成功', false, errorContent, 'success')
             this.setState(message)

@@ -5,7 +5,7 @@ import React, {PropTypes} from 'react'
 import {Button, Modal, Form, Container} from 'semantic-ui-react'
 
 import {staffFormValidation} from '../commons/staffFormValidation'
-import {Notification, resetMessage} from '../commons/Notification'
+import {Notification, resetMessage, messageContent } from '../commons/Notification'
 import StaffForm from '../commons/StaffForm'
 
 
@@ -21,20 +21,14 @@ class StaffDetailDialog extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            currentStaffInformation: this.props.staffInformation ,
-            messageHeader: '',
-            messageHidden: true,
-            messageContent: '',
-            messageStatus: 'negative'
+            currentStaffInformation: this.props.staffInformation,
+            ...resetMessage,
+            isComplete: false
         }
 
         this.handleChange = this.handleChange.bind(this)
         this.handleComplete = this.handleComplete.bind(this)
         this.handleClose = this.handleClose.bind(this)
-    }
-
-    componentWillReceiveProps({staffInformation}) {
-        this.setState({currentStaffInformation: staffInformation})
     }
 
     handleChange(currentStaffInformation) {
@@ -43,36 +37,31 @@ class StaffDetailDialog extends React.Component {
 
     handleComplete() {
         const { name, age } = this.state.currentStaffInformation
-        const messageContent = staffFormValidation({name, age})
-        if (messageContent !== '') {
-            this.setState({
-                messageHeader: '修改失败',
-                messageHidden: false,
-                messageContent: messageContent,
-            })
+        const errorContent = staffFormValidation({name, age})
+        if (errorContent !== '') {
+            const message = messageContent('修改失败', false, errorContent, 'negative')
+            this.setState(message)
 
             setTimeout(()=> {
                 this.setState(resetMessage)
             }, 2000)
 
         } else {
-            this.setState({
-                messageHidden: false,
-                messageHeader: '修改成功',
-                messageStatus: 'success'
-            })
+            const message = messageContent('修改成功', false, errorContent, 'success')
+            this.setState({...message, isComplete: true})
 
             setTimeout(()=> {
                 this.setState(resetMessage)
             }, 2000)
-
-            this.props.onComplete(this.state.currentStaffInformation)
         }
     }
 
     handleClose() {
-        this.setState({currentStaffInformation: this.props.staffInformation})
-        this.props.onClose()
+        if (this.state.isComplete) {
+            this.props.onComplete(this.state.currentStaffInformation)
+        }
+        else this.props.onClose()
+
     }
 
     render() {

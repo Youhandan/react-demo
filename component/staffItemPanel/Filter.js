@@ -1,18 +1,13 @@
 /**
  * Created by youhandan on 2016/11/28.
  */
-import { sortBy, orderBy } from 'lodash'
+import { sortBy, orderBy, filter, values } from 'lodash'
 import { ageDown, ageUp, role, whole} from '../managerSystemLayout/managerSystemConstants'
 
 export const search = (searchText, staffItems) => {
-    return staffItems.filter((staff) => {
-        for (let InformationItem in staff) {
-            const itemValue = staff[InformationItem]
-            if (itemValue.toString().indexOf(searchText) !== -1) {
-                return staff
-            }
-        }
-
+    return filter(staffItems, (staff) => {
+        const hasSearchTextIndex = values(staff).join('').indexOf(searchText)
+        if(hasSearchTextIndex !== -1) return staff
     })
 }
 

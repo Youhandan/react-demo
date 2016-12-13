@@ -6,7 +6,7 @@ import {Header, Divider, Button, Segment, Form} from 'semantic-ui-react'
 import {max} from 'lodash'
 
 import StaffForm from '../commons/StaffForm'
-import {Notification, resetMessage} from '../commons/Notification'
+import {Notification, resetMessage, messageContent} from '../commons/Notification'
 import {staffFormValidation} from '../commons/staffFormValidation'
 
 import {initialNewStaff} from '../managerSystemLayout/managerSystemConstants'
@@ -23,12 +23,10 @@ class StaffAddition extends React.Component {
         super(props)
         this.state = {
             newStaff: initialNewStaff,
-            messageHeader: '',
-            messageHidden: true,
-            messageContent: '',
-            messageStatus: 'negative'
-
+            ...resetMessage
         }
+
+
 
         this.handleClick = this.handleClick.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -41,14 +39,10 @@ class StaffAddition extends React.Component {
     handleClick() {
 
         const {name, age, role, sex, description} = this.state.newStaff
-        const messageContent = staffFormValidation({name, age})
-        if (messageContent !== '') {
-
-            this.setState({
-                messageHeader: '录入失败',
-                messageHidden: false,
-                messageContent: messageContent,
-            })
+        const errorContent = staffFormValidation({name, age})
+        if (errorContent !== '') {
+            const message = messageContent('录入成功', false, errorContent, 'negative')
+            this.setState(message)
 
             setTimeout(()=> {
                 this.setState(resetMessage)
@@ -67,11 +61,8 @@ class StaffAddition extends React.Component {
                 'id': newStaffId
             })
 
-            this.setState({
-                messageHeader: '录入成功',
-                messageStatus: 'success',
-                messageHidden: false
-            })
+            const message = messageContent('录入成功', false, errorContent, 'success')
+            this.setState(message)
 
             setTimeout(()=> {
                 this.setState({...resetMessage, newStaff: initialNewStaff})

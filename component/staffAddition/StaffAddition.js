@@ -36,25 +36,20 @@ class StaffAddition extends React.Component {
 
     handleClick() {
 
-        const {name, age, role, sex, description} = this.state.newStaff
+        const {name, age} = this.state.newStaff
         const errorContent = staffFormValidation({name, age})
         if (errorContent !== '') {
             const message = messageContent('录入成功', false, errorContent, 'negative')
-            this.setState(message)
 
-            setTimeout(()=> {
-                this.setState(resetMessage)
-            }, 2000)
+            this.setState(message)
+            this.dismiss(resetMessage, 2000)
 
         } else {
             const newStaffData = addNewStaff(this.props.staffData, this.state.newStaff)
-
             const message = messageContent('录入成功', false, errorContent, 'success')
-            this.setState(message)
 
-            setTimeout(()=> {
-                this.setState({...resetMessage, newStaff: initialNewStaff})
-            }, 2000)
+            this.setState(message)
+            this.dismiss({...resetMessage, newStaff: initialNewStaff}, 2000)
 
             this.props.onStaffChange(newStaffData)
         }
@@ -86,6 +81,12 @@ class StaffAddition extends React.Component {
                 />
             </Segment>
         )
+    }
+
+    dismiss (newState, time) {
+        setTimeout(()=> {
+            this.setState(newState)
+        }, time)
     }
 }
 

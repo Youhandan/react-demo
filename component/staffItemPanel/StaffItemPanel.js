@@ -107,19 +107,27 @@ class StaffItemPanel extends React.Component {
                             <Table.HeaderCell>操作</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
-
                     <Table.Body>
                         { staffViewItems }
                     </Table.Body>
                 </Table>
-                <StaffDetailDialog
-                    isOpen={this.state.isOpenStaffDetailDialog}
-                    onComplete={this.handleStaffDetailComplete}
-                    onClose={this.handleStaffDetailClose}
-                    staffInformation={this.state.staffDetail}
-                />
+                {this.renderStaffDetailDialog()}
             </div>
         )
+    }
+
+    renderStaffDetailDialog() {
+        const {isOpenStaffDetailDialog, staffDetail} = this.state
+        if (isOpenStaffDetailDialog) {
+            return (
+                <StaffDetailDialog
+                    isOpen={isOpenStaffDetailDialog}
+                    onComplete={this.handleStaffDetailComplete}
+                    onClose={this.handleStaffDetailClose}
+                    staffInformation={staffDetail}
+                />
+            )
+        }
     }
 }
 

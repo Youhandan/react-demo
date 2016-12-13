@@ -16,7 +16,7 @@ class StaffForm extends React.Component {
 
     constructor(props) {
         super(props)
-        this.handleFormChange = this.handleFormChange.bind(this)
+        this.handleInputChange = this.handleInputChange.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleSelectChange = this.handleSelectChange.bind(this)
         this.state = { ...this.props.staffInformation }
@@ -26,7 +26,7 @@ class StaffForm extends React.Component {
         this.setState({ ...staffInformation})
     }
 
-    handleFormChange(key) {
+    handleInputChange(key) {
         return (e) => {
             this.setState(
                 {[key]: e.target.value},
@@ -57,7 +57,7 @@ class StaffForm extends React.Component {
                     <label>姓名</label>
                     <Input
                         value={name}
-                        onChange={this.handleFormChange('name')}
+                        onChange={this.handleInputChange('name')}
                     />
                 </Form.Field>
                 <Form.Field inline={this.props.isInline}>
@@ -65,7 +65,7 @@ class StaffForm extends React.Component {
                     <Input
                         type='number'
                         value={age}
-                        onChange={this.handleFormChange('age')}
+                        onChange={this.handleInputChange('age')}
                     />
                 </Form.Field>
                 <Form.Field inline={this.props.isInline}>
@@ -90,7 +90,7 @@ class StaffForm extends React.Component {
                     <label>个人描述</label>
                     <TextArea rows='4' cols='50'
                               value={description}
-                              onChange={this.handleFormChange('description')}
+                              onChange={this.handleInputChange('description')}
                     />
                 </Form.Field>
             </div>

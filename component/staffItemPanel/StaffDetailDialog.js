@@ -40,19 +40,14 @@ class StaffDetailDialog extends React.Component {
         const errorContent = staffFormValidation({name, age})
         if (errorContent !== '') {
             const message = messageContent('修改失败', false, errorContent, 'negative')
-            this.setState(message)
 
-            setTimeout(()=> {
-                this.setState(resetMessage)
-            }, 2000)
+            this.setState(message)
+            this.dismiss(resetMessage, 2000)
 
         } else {
             const message = messageContent('修改成功', false, errorContent, 'success')
             this.setState({...message, isComplete: true})
-
-            setTimeout(()=> {
-                this.setState(resetMessage)
-            }, 2000)
+            this.dismiss(resetMessage, 2000)
         }
     }
 
@@ -98,6 +93,12 @@ class StaffDetailDialog extends React.Component {
                 </Modal.Actions>
             </Modal>
         )
+    }
+
+    dismiss (newState, time) {
+        setTimeout(()=> {
+            this.setState(newState)
+        }, time)
     }
 }
 

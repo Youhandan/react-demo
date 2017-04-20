@@ -17,7 +17,7 @@ var config = {
 
     resolve: {
         root: [
-            path.resolve('/Users/youhandan/Desktop/react-demo')
+            path.resolve('/Users/youhandan/Desktop/Project/react-demo')
         ]
     },
 
